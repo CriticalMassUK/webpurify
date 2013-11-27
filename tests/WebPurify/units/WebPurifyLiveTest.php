@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * I'm so sorry for the language,
+ * My mother didn't teach me to speak like this ...
+ */
+
 class WebPurifyLiveTest extends PHPUnit_Framework_TestCase
 {
     
@@ -34,10 +39,22 @@ class WebPurifyLiveTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("****, the quick brown fox jumps over the lazy dog", $replaced);
     }
 
-    public function testReturn()
+    public function testReturnExpletivesNone()
+    {
+        $returned = $this->webPurify->live->returnExpletives("the quick brown fox jumps over the lazy dog");
+        $this->assertCount(0, $returned);
+    }
+
+    public function testReturnExpletivesOne()
     {
         $returned = $this->webPurify->live->returnExpletives("fuck, the quick brown fox jumps over the lazy dog");
-        $this->assertEquals(array('fuck'), $returned);
+        $this->assertCount(1, $returned);
+    }
+
+    public function testReturnExpletivesTwo()
+    {
+        $returned = $this->webPurify->live->returnExpletives("fuck, the quick brown fox jumps over the lazy pussy");
+        $this->assertCount(2, $returned);
     }
 
     /**

@@ -91,7 +91,7 @@ class WebPurifyLive
         WebPurify::requireParams($params, array('text'));
 
         $response = $this->webPurify->http('webpurify.live.return', $params);
-        return (array) $response->rsp->expletive;
+        return $response->rsp->found ? (array) $response->rsp->expletive : array();
     }
 
     /**
