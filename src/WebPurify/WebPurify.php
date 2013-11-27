@@ -4,7 +4,11 @@ namespace WebPurify;
 
 class WebPurify
 {
-    
+
+    const END_POINT_DOMAIN_UNITED_STATES = 'api1.webpurify.com';
+    const END_POINT_DOMAIN_EUROPE        = 'api1-eu.webpurify.com';
+    const END_POINT_DOMAIN_ASIA_PACIFIC  = 'api1-ap.webpurify.com';
+
     /* API Key */
     protected $apiKey;
     /* End point domain */
@@ -66,17 +70,17 @@ class WebPurify
 
     public function setEndPointDomainUnitedStates()
     {
-        $this->endPointDomain = 'api1.webpurify.com';
+        $this->endPointDomain = static::END_POINT_DOMAIN_UNITED_STATES;
     }
 
     public function setEndPointDomainEurope()
     {
-        $this->endPointDomain = 'api1-eu.webpurify.com';
+        $this->endPointDomain = static::END_POINT_DOMAIN_EUROPE;
     }
 
     public function setEndPointDomainAsiaPacific()
     {
-        $this->endPointDomain = 'api1-ap.webpurify.com';
+        $this->endPointDomain = static::END_POINT_DOMAIN_ASIA_PACIFIC;
     }
 
     /* helpers */
