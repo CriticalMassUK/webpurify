@@ -36,7 +36,7 @@ class WebPurifyLiveTest extends PHPUnit_Framework_TestCase
 
     public function testReturn()
     {
-        $returned = $this->webPurify->live->returnText("fuck, the quick brown fox jumps over the lazy dog");
+        $returned = $this->webPurify->live->returnExpletives("fuck, the quick brown fox jumps over the lazy dog");
         $this->assertEquals(array('fuck'), $returned);
     }
 

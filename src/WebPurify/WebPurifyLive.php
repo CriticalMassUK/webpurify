@@ -82,7 +82,7 @@ class WebPurifyLive
      * @param string|array
      * @return array => list of profanities
      */
-    public function returnText($params = array())
+    public function returnExpletives($params = array())
     {
         if (is_string($params)) {
             $params = array('text' => $params);
