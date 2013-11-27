@@ -4,5 +4,4 @@ bin/
 vendor/
 composer.phar
 composer.lock
-phpunit.phar
 phpunit.xml
