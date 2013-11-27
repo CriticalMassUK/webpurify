@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./tests/bootstrap.php"
+         colors="true"
+         strict="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader">
+
+    <!--
+    <php>
+        <env name="WEB_PURIFY_API_KEY" value="" />
+    </php>
+    -->
+
+    <testsuites>
+        <testsuite name="Web Purify Test Suite">
+            <directory>tests/WebPurify</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html"
+             target="tests/WebPurify/coverage"
+             charset="UTF-8"
+             yui="false"
+             highlight="true"
+             lowUpperBound="60"
+             highLowerBound="90" />
+    </logging>
+</phpunit>

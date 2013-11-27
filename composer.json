@@ -1,0 +1,33 @@
+{
+    "name": "bashaus/webpurify",
+    "description": "A library for using web purify",
+    "homepage": "http://github.com/bashaus/webpurify/",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bashkim Isai",
+            "homepage": "http://bashkim.com.au"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/bashaus/oriancci/contributors"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "psr/log": "~1.0"
+    },
+    "autoload": {
+        "psr-0": {"WebPurify": "src/"}
+    },
+    "config": {
+        "bin-dir" : "bin"
+    },
+    "suggest": {
+        "monolog/monolog": "Enables log messaging through the PSR-3 standard"
+    }
+}

@@ -1,0 +1,8 @@
+.DS_Store
+tests/WebPurify/coverage
+bin/
+vendor/
+composer.phar
+composer.lock
+phpunit.phar
+phpunit.xml
