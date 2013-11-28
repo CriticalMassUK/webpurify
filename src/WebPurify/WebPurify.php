@@ -27,9 +27,12 @@ class WebPurify
     /* last http  response information */
     protected $httpInfo;
 
-    protected $userAgent;
-    protected $connectTimeout;
-    protected $timeout;
+    /* User agent */
+    protected $userAgent = 'WebPurify';
+    /* Set timeout default. */
+    protected $timeout = 30;
+    /* Set connect timeout. */
+    protected $connectTimeout = 30;
 
     protected $sandbox = false;
 
