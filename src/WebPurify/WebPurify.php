@@ -9,6 +9,8 @@ class WebPurify
     const END_POINT_DOMAIN_EUROPE        = 'api1-eu.webpurify.com';
     const END_POINT_DOMAIN_ASIA_PACIFIC  = 'api1-ap.webpurify.com';
 
+    const END_POINT_DOMAIN_IMAGES        = 'im-api1.webpurify.com';
+
     /* API Key */
     protected $apiKey;
     /* End point domain */
@@ -76,8 +78,12 @@ class WebPurify
 
     /* helpers */
 
-    public function http($method, array $params = array())
+    public function http($method, array $params = array(), $endPointDomain = null)
     {
+        if (is_null($endPointDomain)) {
+            $endPointDomain = $this->getEndPointDomain();
+        }
+
         $params['api_key'] = $this->getApiKey();
         $params['method'] = sprintf(
             'webpurify.%s.%s',
@@ -88,7 +94,7 @@ class WebPurify
         $url = sprintf(
             "%s://%s/services/rest/?%s",
             $this->useSSL ? 'https' : 'http',
-            $this->getEndPointDomain(),
+            $endPointDomain,
             http_build_query($params)
         );
 
@@ -184,7 +190,7 @@ class WebPurify
 
         WebPurify::requireParams($params, array('imgurl'));
 
-        $response = $this->http('imgcheck', $params);
+        $response = $this->http('imgcheck', $params, static::END_POINT_DOMAIN_IMAGES);
         return (string) $response->imgid;
     }
 
@@ -202,7 +208,7 @@ class WebPurify
 
         WebPurify::requireParams($params, array('imgid'));
 
-        $response = $this->http('imgstatus', $params);
+        $response = $this->http('imgstatus', $params, static::END_POINT_DOMAIN_IMAGES);
 
         switch ($response->status)
         {
@@ -228,7 +234,7 @@ class WebPurify
      */
     public function imgAccount($params = array())
     {
-        $response = $this->http('imgaccount', $params);
+        $response = $this->http('imgaccount', $params, static::END_POINT_DOMAIN_IMAGES);
         return (int) $response->remaining;
     }
 
