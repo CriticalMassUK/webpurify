@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+    <method>webpurify.live.removefromblacklist</method>
+    <format>rest</format>
+    <success>1</success>
+    <api_key>0123456789ABCDEF0123456789ABCDEF</api_key>
+</rsp>

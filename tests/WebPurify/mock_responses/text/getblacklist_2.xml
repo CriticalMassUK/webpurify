@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+    <method>webpurify.live.getblacklist</method>
+    <format>rest</format>
+    <word>cockburn</word>
+    <word>scunthorpe</word>
+    <api_key>0123456789ABCDEF0123456789ABCDEF</api_key>
+</rsp>

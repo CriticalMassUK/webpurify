@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+    <method>webpurify.live.checkcount</method>
+    <format>rest</format>
+    <found>2</found>
+    <api_key>0123456789ABCDEF0123456789ABCDEF</api_key>
+</rsp>

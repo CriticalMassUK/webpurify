@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<rsp stat="ok">
+    <method>webpurify.live.imgcheck</method>
+    <format>rest</format>
+    <imgid>7de93bc200ff21a26da6ddb115506e82</imgid>
+    <status>pending</status>
+    <api_key>0123456789ABCDEF0123456789ABCDEF</api_key>
+</rsp>

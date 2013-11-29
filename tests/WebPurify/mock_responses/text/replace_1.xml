@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+    <method>webpurify.live.replace</method>
+    <format>rest</format>
+    <found>1</found>
+    <text>the quick brown **** jumps over the lazy dog</text>
+    <api_key>0123456789ABCDEF0123456789ABCDEF</api_key>
+</rsp>

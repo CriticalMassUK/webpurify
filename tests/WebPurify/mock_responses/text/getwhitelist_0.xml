@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+    <method>webpurify.live.getwhitelist</method>
+    <format>rest</format>
+    <api_key>0123456789ABCDEF0123456789ABCDEF</api_key>
+</rsp>

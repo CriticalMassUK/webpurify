@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok">
+    <method>webpurify.live.return</method>
+    <format>rest</format>
+    <found>1</found>
+    <expletive>fuck</expletive>
+    <api_key>0123456789ABCDEF0123456789ABCDEF</api_key>
+</rsp>
