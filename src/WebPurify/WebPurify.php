@@ -30,19 +30,31 @@ abstract class WebPurify
 
     protected $sandbox = false;
 
-    public function __construct($api_key)
+    /**
+     * @param string $apiKey The API key from WebPurify to verify content
+     */
+
+    public function __construct($apiKey)
     {
         // Set the API key
-        $this->setApiKey($api_key);
+        $this->setApiKey($apiKey);
     }
 
     /* accessors and mutators */
 
+    /**
+     * Get the API key in use
+     */
     public function getApiKey()
     {
         return $this->apiKey;
     }
 
+    /**
+     * Change the API key in use
+     *
+     * @param string $apiKey The new API key to use
+     */
     public function setApiKey($apiKey)
     {
         $this->apiKey = $apiKey;
@@ -74,7 +86,11 @@ abstract class WebPurify
 
     /* helpers */
 
-    public function http($method, array $params = array(), $endPointDomain = null)
+    /**
+     *
+     */
+
+    protected function http($method, array $params = array(), $endPointDomain = null)
     {
         if (is_null($endPointDomain)) {
             $endPointDomain = $this->getEndPointDomain();
@@ -118,16 +134,22 @@ abstract class WebPurify
 
         curl_close ($ci);
 
-        return $responseRaw;
-    }
-
-    public function request($method, array $params = array(), $endPointDomain = null)
-    {
-        $responseRaw = $this->http($method, $params, $endPointDomain);
-
         if ($responseRaw === false) {
             throw new WebPurifyException($curlError, $curlErrno);
         }
+
+        return $responseRaw;
+    }
+
+    /**
+     * Perform a request
+     *
+     * Interprets the response from a HTTP request into an object
+     */
+
+    protected function request($method, array $params = array(), $endPointDomain = null)
+    {
+        $responseRaw = $this->http($method, $params, $endPointDomain);
 
         /* CURL parse */
         $response = simplexml_load_string($responseRaw, 'SimpleXMLElement', LIBXML_NOCDATA);
@@ -148,7 +170,10 @@ abstract class WebPurify
     }
 
     /**
-     * Store header
+     * Stores HTTP Response Headers
+     *
+     * Helper method for CURL to store HTTP response header information
+     * for later use
      */
     public function getHeader($ch, $header) {
         $i = strpos($header, ':');
@@ -164,8 +189,14 @@ abstract class WebPurify
 
     /**
      * Check parameters exist
+     *
+     * Static method for checking that a parameter exists in the $params
+     * array passed to WebPurity methods
+     *
+     * @param array $userInput A hash of HTTP GET/POST parameters
+     * @param array $required  An array of required parameters
      */
-    public static function requireParams($userInput, $required)
+    protected static function requireParams($userInput, $required)
     {
         foreach ($required as $requiredParam) {
             if (!isset($userInput[$requiredParam])) {

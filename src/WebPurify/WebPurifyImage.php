@@ -2,13 +2,20 @@
 
 namespace WebPurify;
 
+/**
+ * Checks if images are appropriate
+ */
+
 class WebPurifyImage extends WebPurify
 {
     const END_POINT_DOMAIN_IMAGES = 'im-api1.webpurify.com';
 
-    public function __construct($api_key)
+    /**
+     * @param string $apiKey The API key from WebPurify to verify content
+     */
+    public function __construct($apiKey)
     {
-        parent::__construct($api_key);
+        parent::__construct($apiKey);
 
         // Use the image API endpoint
         $this->setEndPointDomain(static::END_POINT_DOMAIN_IMAGES);
@@ -18,7 +25,7 @@ class WebPurifyImage extends WebPurify
 
     /**
      * Submit an image to the moderation service.
-     * @param string|array
+     * @param string|array $params (string) URL of image to verify, (array) multiple parameters
      * @return string Image ID
      * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgcheck.php
      */
@@ -36,7 +43,7 @@ class WebPurifyImage extends WebPurify
 
     /**
      * Returns the moderation status of an image
-     * @param string|array
+     * @param string|array $params (string) ID of an image being moderated returned originally by imgCheck, (array) multiple parameters
      * @return boolean|null null => pending, true => approved, false => declined
      * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgstatus.php
      */
@@ -68,7 +75,7 @@ class WebPurifyImage extends WebPurify
 
     /**
      * Check the number of image submissions remaining on your license.
-     * @param array
+     * @param array $params Multiple parameters
      * @return int Number of image submissions remaining on your license.
      * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgaccount.php
      */
