@@ -17,3 +17,13 @@ foreach (array('WEB_PURIFY_API_KEY') as $constant) {
         define($constant, $_ENV[$constant]);
     }
 }
+
+$mockResponsesDir = realpath(__DIR__ . '/WebPurify/mock_responses/');
+if ($mockResponsesDir === false)
+{
+    throw new Exception('Mock response directory not found');
+}
+
+define('WEB_PURIFY_MOCK_RESPONSES_DIR', $mockResponsesDir . '/');
+
+require 'WebPurify/units/WebPurifyTest.php';
