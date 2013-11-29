@@ -2,14 +2,8 @@
 
 namespace WebPurify;
 
-class WebPurify
+abstract class WebPurify
 {
-
-    const END_POINT_DOMAIN_UNITED_STATES = 'api1.webpurify.com';
-    const END_POINT_DOMAIN_EUROPE        = 'api1-eu.webpurify.com';
-    const END_POINT_DOMAIN_ASIA_PACIFIC  = 'api1-ap.webpurify.com';
-
-    const END_POINT_DOMAIN_IMAGES        = 'im-api1.webpurify.com';
 
     /* API Key */
     protected $apiKey;
@@ -40,9 +34,6 @@ class WebPurify
     {
         // Set the API key
         $this->setApiKey($api_key);
-
-        // Use the US endpoint
-        $this->setEndPointDomain(static::END_POINT_DOMAIN_UNITED_STATES);
     }
 
     /* accessors and mutators */
@@ -68,6 +59,8 @@ class WebPurify
     {
         $this->endPointDomain = $endPointDomain;
     }
+
+    /* sandbox */
 
     public function setSandbox($sandbox)
     {
@@ -125,6 +118,13 @@ class WebPurify
 
         curl_close ($ci);
 
+        return $responseRaw;
+    }
+
+    public function request($method, array $params = array(), $endPointDomain = null)
+    {
+        $responseRaw = $this->http($method, $params, $endPointDomain);
+
         if ($responseRaw === false) {
             throw new WebPurifyException($curlError, $curlErrno);
         }
@@ -175,266 +175,5 @@ class WebPurify
                 ));
             }
         }
-    }
-
-    /* image methods */
-
-    /**
-     * Submit an image to the moderation service.
-     * @param string|array
-     * @return string Image ID
-     * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgcheck.php
-     */
-    public function imgCheck($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('imgurl' => $params);
-        }
-
-        WebPurify::requireParams($params, array('imgurl'));
-
-        $response = $this->http('imgcheck', $params, static::END_POINT_DOMAIN_IMAGES);
-        return (string) $response->imgid;
-    }
-
-    /**
-     * Returns the moderation status of an image
-     * @param string|array
-     * @return boolean|null null => pending, true => approved, false => declined
-     * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgstatus.php
-     */
-    public function imgStatus($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('imgid' => $params);
-        }
-
-        WebPurify::requireParams($params, array('imgid'));
-
-        $response = $this->http('imgstatus', $params, static::END_POINT_DOMAIN_IMAGES);
-
-        switch ($response->status)
-        {
-            case 'pending':
-                return null;
-
-            case 'approved':
-                return true;
-
-            case 'declined':
-                return false;
-
-            default:
-                throw new WebPurifyException('Unknown image status response: ' . $response->status);
-        }
-    }
-
-    /**
-     * Check the number of image submissions remaining on your license.
-     * @param array
-     * @return int Number of image submissions remaining on your license.
-     * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgaccount.php
-     */
-    public function imgAccount($params = array())
-    {
-        $response = $this->http('imgaccount', $params, static::END_POINT_DOMAIN_IMAGES);
-        return (int) $response->remaining;
-    }
-
-    /* text methods */
-
-    /**
-     * Checks to see if there are profanities in the string
-     * @param string|array
-     * @return boolean: true => profane, false => clean
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.check.php
-     */
-    public function check($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('text' => $params);
-        }
-
-        static::requireParams($params, array('text'));
-
-        $response = $this->http('check', $params);
-        return (boolean) $response->found;
-    }
-
-    /**
-     * Counts the number of profanities
-     * @param string|array
-     * @return int => number of profantities (0 = clean)
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.checkcount.php
-     */
-    public function checkCount($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('text' => $params);
-        }
-
-        static::requireParams($params, array('text'));
-
-        $response = $this->http('checkcount', $params);
-        return (boolean) $response->found;
-    }
-
-    /**
-     * Replace profanities with a symbol
-     * @param string|array
-     * @return string
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.replace.php
-     */
-    public function replace($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('text' => $params, 'replacesymbol' => '*');
-        }
-
-        static::requireParams($params, array('text', 'replacesymbol'));
-
-        $response = $this->http('replace', $params);
-        return (string) $response->text;
-    }
-
-    /**
-     * Returns a list of the profanities in a string
-     * @param string|array
-     * @return array => list of profanities
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.return.php
-     */
-    public function returnExpletives($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('text' => $params);
-        }
-
-        static::requireParams($params, array('text'));
-
-        $response = $this->http('return', $params);
-
-        if (!$response->found) {
-            return array();
-        }
-
-        if (is_string($response->expletive)) {
-            return array($response->expletive);
-        }
-
-        return (array) $response->expletive;
-    }
-
-    /**
-     * Add a profanity to the Black List
-     * @param string|array
-     * @return boolean => success
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.addtoblacklist.php
-     */
-    public function addToBlackList($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('word' => $params);
-        }
-
-        static::requireParams($params, array('word'));
-
-        $response = $this->http('addtoblacklist', $params);
-        return (boolean) $response->success;
-    }
-
-    /**
-     * Add a profanity to the White List
-     * @param string|array
-     * @return boolean => success
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.addtowhitelist.php
-     */
-    public function addToWhiteList($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('word' => $params);
-        }
-
-        static::requireParams($params, array('word'));
-
-        $response = $this->http('addtowhitelist', $params);
-        return (boolean) $response->success;
-    }
-
-    /**
-     * Remove a profanity from the Black List
-     * @param string|array
-     * @return boolean => success
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.removefromblacklist.php
-     */
-    public function removeFromBlackList($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('word' => $params);
-        }
-
-        static::requireParams($params, array('word'));
-
-        $response = $this->http('removefromblacklist', $params);
-        return (boolean) $response->success;
-    }
-
-    /**
-     * Remove a profanity from the White List
-     * @param string|array
-     * @return boolean => success
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.removefromwhitelist.php
-     */
-    public function removeFromWhiteList($params = array())
-    {
-        if (is_string($params)) {
-            $params = array('word' => $params);
-        }
-
-        static::requireParams($params, array('word'));
-
-        $response = $this->http('removefromwhitelist', $params);
-        return (boolean) $response->success;
-    }
-
-    /**
-     * Get the Black List
-     * @param array
-     * @return array
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.getblacklist.php
-     */
-    public function getBlackList($params = array())
-    {
-        $response = $this->http('getblacklist', $params);
-
-        if (!isset($response->word)) {
-            return array();
-        }
-
-        if (is_string($response->word)) {
-            return array($response->word);
-        }
-
-        return (array) $response->word;
-    }
-
-    /**
-     * Get the White List
-     * @param array
-     * @return array
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.getwhitelist.php
-     */
-    public function getWhiteList($params = array())
-    {
-        $response = $this->http('getwhitelist', $params);
-
-        if (!isset($response->word)) {
-            return array();
-        }
-
-        if (is_string($response->word)) {
-            return array($response->word);
-        }
-        
-        return (array) $response->word;
     }
 }
