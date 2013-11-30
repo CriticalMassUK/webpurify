@@ -5,6 +5,8 @@ php:
   - 5.4
 
 before_script:
+  # PHP Unit (with database)
+  - export WEB_PURIFY_API_KEY=""
   - composer install
 
 script: bin/phpunit -c phpunit.xml.dist
