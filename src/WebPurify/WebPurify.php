@@ -2,11 +2,14 @@
 
 namespace WebPurify;
 
+use Psr\Log\LogLevel;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+
 /**
  * @package bashaus/webpurify
  */
-
-abstract class WebPurify
+abstract class WebPurify implements LoggerAwareInterface
 {
 
     /* API Key */
@@ -33,6 +36,9 @@ abstract class WebPurify
     protected $connectTimeout = 30;
 
     protected $sandbox = false;
+
+    /* Logger */
+    protected $logger;
 
     /**
      * @param string $apiKey The API key from WebPurify to verify content
@@ -88,6 +94,13 @@ abstract class WebPurify
         return $this->sandbox;
     }
 
+    /* psr-3 */
+
+    public function setLogger(LoggerInterface $logger) 
+    {
+        $this->logger = $logger;
+    }
+
     /* helpers */
 
     /**
@@ -138,9 +151,13 @@ abstract class WebPurify
 
         curl_close($ci);
 
+        $this->log(LogLevel::DEBUG, $url);
+
         if ($responseRaw === false) {
             throw new WebPurifyException($curlError, $curlErrno);
         }
+
+        $this->log(LogLevel::DEBUG, $responseRaw);
 
         return $responseRaw;
     }
@@ -211,5 +228,22 @@ abstract class WebPurify
                 ));
             }
         }
+    }
+
+    /**
+     * Send to log
+     *
+     * Pass information through to monolog
+     */
+    protected function log()
+    {
+        if (!$this->logger) {
+            return;
+        }
+
+        return call_user_func_array(
+            array($this->logger, 'log'),
+            func_get_args()
+        );
     }
 }
