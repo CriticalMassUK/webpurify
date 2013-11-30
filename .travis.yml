@@ -6,7 +6,7 @@ php:
 
 before_script:
   # PHP Unit (with database)
-  - export WEB_PURIFY_API_KEY=""
+  - export WEB_PURIFY_API_KEY="0123456789ABCDEF0123456789ABCDEF"
   - composer install
 
 script: bin/phpunit -c phpunit.xml.dist
