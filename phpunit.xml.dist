@@ -10,11 +10,9 @@
          convertWarningsToExceptions="true"
          testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader">
 
-    <!--
     <php>
-        <env name="WEB_PURIFY_API_KEY" value="" />
+        <env name="WEB_PURIFY_API_KEY" value="0123456789ABCDEF0123456789ABCDEF" />
     </php>
-    -->
 
     <testsuites>
         <testsuite name="Web Purify Test Suite">
