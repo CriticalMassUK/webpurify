@@ -4,6 +4,7 @@ namespace WebPurify;
 
 /**
  * Instantly verifies if text contains any expletives
+ * @package bashaus/webpurify
  */
 
 class WebPurifyText extends WebPurify
@@ -30,7 +31,7 @@ class WebPurifyText extends WebPurify
      * Checks to see if there are profanities in the string
      * @param string|array $params (string) text to check, (array) multiple parameters
      * @return boolean: true => profane, false => clean
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.check.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.check.php
      */
     public function check($params = array())
     {
@@ -48,7 +49,7 @@ class WebPurifyText extends WebPurify
      * Counts the number of profanities
      * @param string|array $params (string) text to check, (array) multiple parameters
      * @return int => number of profantities (0 = clean)
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.checkcount.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.checkcount.php
      */
     public function checkCount($params = array())
     {
@@ -66,7 +67,7 @@ class WebPurifyText extends WebPurify
      * Replace profanities with a symbol
      * @param string|array $params (string) text to check and replaces expletives with *, (array) multiple parameters
      * @return string
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.replace.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.replace.php
      */
     public function replace($params = array())
     {
@@ -84,7 +85,7 @@ class WebPurifyText extends WebPurify
      * Returns a list of the profanities in a string
      * @param string|array $params (string) text to check, (array) multiple parameters
      * @return array => list of profanities
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.return.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.return.php
      */
     public function returnExpletives($params = array())
     {
@@ -111,7 +112,7 @@ class WebPurifyText extends WebPurify
      * Add a profanity to the Black List
      * @param string|array $params (string) word to add, (array) multiple parameters
      * @return boolean => success
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.addtoblacklist.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.addtoblacklist.php
      */
     public function addToBlackList($params = array())
     {
@@ -129,7 +130,7 @@ class WebPurifyText extends WebPurify
      * Add a profanity to the White List
      * @param string|array $params (string) word to add, (array) multiple parameters
      * @return boolean => success
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.addtowhitelist.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.addtowhitelist.php
      */
     public function addToWhiteList($params = array())
     {
@@ -147,7 +148,7 @@ class WebPurifyText extends WebPurify
      * Remove a profanity from the Black List
      * @param string|array $params (string) word to remove, (array) multiple parameters
      * @return boolean => success
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.removefromblacklist.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.removefromblacklist.php
      */
     public function removeFromBlackList($params = array())
     {
@@ -165,7 +166,7 @@ class WebPurifyText extends WebPurify
      * Remove a profanity from the White List
      * @param string|array $params (string) word to remove, (array) multiple parameters
      * @return boolean => success
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.removefromwhitelist.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.removefromwhitelist.php
      */
     public function removeFromWhiteList($params = array())
     {
@@ -183,7 +184,7 @@ class WebPurifyText extends WebPurify
      * Get the Black List
      * @param array $params multiple parameters
      * @return array
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.getblacklist.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.getblacklist.php
      */
     public function getBlackList($params = array())
     {
@@ -204,7 +205,7 @@ class WebPurifyText extends WebPurify
      * Get the White List
      * @param array $params multiple parameters
      * @return array
-     * @see http://www.webpurify.com/documentation/methods/webpurify.live.getwhitelist.php
+     * @link http://www.webpurify.com/documentation/methods/webpurify.live.getwhitelist.php
      */
     public function getWhiteList($params = array())
     {

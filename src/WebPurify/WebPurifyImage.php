@@ -3,7 +3,8 @@
 namespace WebPurify;
 
 /**
- * Checks if images are appropriate
+ * Sends images and retrieves status for human verification
+ * @package bashaus/webpurify
  */
 
 class WebPurifyImage extends WebPurify
@@ -27,7 +28,7 @@ class WebPurifyImage extends WebPurify
      * Submit an image to the moderation service.
      * @param string|array $params (string) URL of image to verify, (array) multiple parameters
      * @return string Image ID
-     * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgcheck.php
+     * @link http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgcheck.php
      */
     public function imgCheck($params = array())
     {
@@ -47,7 +48,7 @@ class WebPurifyImage extends WebPurify
      *  (string) ID of an image being moderated returned originally by imgCheck
      *  (array) multiple parameters
      * @return boolean|null null => pending, true => approved, false => declined
-     * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgstatus.php
+     * @link http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgstatus.php
      */
     public function imgStatus($params = array())
     {
@@ -79,7 +80,7 @@ class WebPurifyImage extends WebPurify
      * Check the number of image submissions remaining on your license.
      * @param array $params Multiple parameters
      * @return int Number of image submissions remaining on your license.
-     * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgaccount.php
+     * @link http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgaccount.php
      */
     public function imgAccount($params = array())
     {

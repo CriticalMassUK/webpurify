@@ -2,6 +2,10 @@
 
 namespace WebPurify;
 
+/**
+ * @package bashaus/webpurify
+ */
+
 abstract class WebPurify
 {
 
