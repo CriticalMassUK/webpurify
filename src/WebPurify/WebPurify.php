@@ -117,10 +117,10 @@ abstract class WebPurify
         curl_setopt($ci, CURLOPT_USERAGENT, $this->userAgent);
         curl_setopt($ci, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout);
         curl_setopt($ci, CURLOPT_TIMEOUT, $this->timeout);
-        curl_setopt($ci, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ci, CURLOPT_SSL_VERIFYPEER, $this->sslVerifyPeer);
         curl_setopt($ci, CURLOPT_HEADERFUNCTION, array($this, 'getHeader'));
-        curl_setopt($ci, CURLOPT_HEADER, FALSE);
+        curl_setopt($ci, CURLOPT_HEADER, false);
         curl_setopt($ci, CURLOPT_URL, $url);
 
         /* CURL send */
@@ -132,7 +132,7 @@ abstract class WebPurify
         $curlError = curl_error($ci);
         $curlErrno = curl_errno($ci);
 
-        curl_close ($ci);
+        curl_close($ci);
 
         if ($responseRaw === false) {
             throw new WebPurifyException($curlError, $curlErrno);
@@ -175,7 +175,8 @@ abstract class WebPurify
      * Helper method for CURL to store HTTP response header information
      * for later use
      */
-    public function getHeader($ch, $header) {
+    public function getHeader($ch, $header)
+    {
         $i = strpos($header, ':');
 
         if (!empty($i)) {

@@ -19,8 +19,7 @@ foreach (array('WEB_PURIFY_API_KEY') as $constant) {
 }
 
 $mockResponsesDir = realpath(__DIR__ . '/WebPurify/mock_responses/');
-if ($mockResponsesDir === false)
-{
+if ($mockResponsesDir === false) {
     throw new Exception('Mock response directory not found');
 }
 

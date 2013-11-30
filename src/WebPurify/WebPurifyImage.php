@@ -43,7 +43,9 @@ class WebPurifyImage extends WebPurify
 
     /**
      * Returns the moderation status of an image
-     * @param string|array $params (string) ID of an image being moderated returned originally by imgCheck, (array) multiple parameters
+     * @param string|array $params
+     *  (string) ID of an image being moderated returned originally by imgCheck
+     *  (array) multiple parameters
      * @return boolean|null null => pending, true => approved, false => declined
      * @see http://www.webpurify.com/image-moderation/documentation/methods/webpurify.live.imgstatus.php
      */

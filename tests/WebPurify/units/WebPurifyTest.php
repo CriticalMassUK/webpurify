@@ -12,9 +12,10 @@ abstract class WebPurifyTest extends PHPUnit_Framework_TestCase
 
     protected function mockHTTP($filename)
     {
-        $this->webPurify->expects($this->any())
-             ->method('http')
-             ->will($this->returnValue(
+        $this->webPurify
+            ->expects($this->any())
+            ->method('http')
+            ->will($this->returnValue(
                 file_get_contents(WEB_PURIFY_MOCK_RESPONSES_DIR . $filename)
             ));
     }
