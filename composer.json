@@ -1,17 +1,17 @@
 {
-    "name": "bashaus/webpurify",
+    "name": "agencyrepublic/webpurify",
     "description": "A library for using web purify",
-    "homepage": "http://github.com/bashaus/webpurify/",
+    "homepage": "http://github.com/agencyrepublic/webpurify/",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Bashkim Isai",
-            "homepage": "http://bashkim.com.au"
+            "name": "Agency Republic",
+            "homepage": "http://agencyrepublic.com"
         },
         {
             "name": "Contributors",
-            "homepage": "https://github.com/bashaus/oriancci/contributors"
+            "homepage": "https://github.com/agencyrepublic/webpurify/graphs/contributors"
         }
     ],
     "require-dev": {

@@ -1,6 +1,6 @@
 # Web Purify API
 
-[![Build Status](https://travis-ci.org/bashaus/webpurify.png?branch=master)](https://travis-ci.org/bashaus/webpurify)
+[![Build Status](https://travis-ci.org/agencyrepublic/webpurify.png?branch=master)](https://travis-ci.org/agencyrepublic/webpurify)
 
 A library for interfacing with [WebPurify](http://webpurify.com/).
 
@@ -13,7 +13,7 @@ Add the following to your `composer.json`.
 ```
 {
 	"require": {
-		"bashaus/webpurify": "dev-master"
+		"agencyrepublic/webpurify": "dev-master"
 	}
 }
 ```
