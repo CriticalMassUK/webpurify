@@ -70,6 +70,24 @@ abstract class WebPurify implements LoggerAwareInterface
         $this->apiKey = $apiKey;
     }
 
+    /**
+     * Get the SSL configuration property
+     */
+    public function getUseSSL()
+    {
+        return $this->useSSL;
+    }
+
+    /**
+     * Set the SSL configuration property
+     *
+     * @param boolean $useSSL Whether to use SSL for requests
+     */
+    public function setUseSSL($useSSL)
+    {
+        $this->useSSL = $useSSL;
+    }
+
     /* endpoints */
 
     public function getEndPointDomain()

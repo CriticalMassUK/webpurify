@@ -50,6 +50,22 @@ $webPurifyImage = new WebPurify\WebPurifyImage($apiKey);
 $webPurifyImage->setLogger($logger);
 ```
 
+### getUseSSL
+
+Get whether SSL will be used for requests.
+
+```
+var_dump($webPurifyImage->getUseSSL()); // bool(FALSE)
+```
+
+### setUseSSL
+
+Set whether SSL will be used for requests. The default is `false`.
+
+```
+$webPurifyImage->setUseSSL(true); // Use SSL in requests
+```
+
 ## WebPurifyImage
 
 Instantiate `WebPurifyImage` by passing through your API key:
