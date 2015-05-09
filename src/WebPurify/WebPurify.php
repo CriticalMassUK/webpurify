@@ -249,6 +249,35 @@ abstract class WebPurify implements LoggerAwareInterface
     }
 
     /**
+     * Check exactly one of the given parameters exists
+     *
+     * Static method for checking that exactly one of the given parameters
+     * exists in the $params array passed to WebPurity methods
+     *
+     * @param array $userInput A hash of HTTP GET/POST parameters
+     * @param array $required  An array of parameters
+     */
+    protected static function requireExactlyOneParamFrom($userInput, $parameters)
+    {
+        $count = 0;
+        foreach ($parameters as $requiredParam) {
+            if (isset($userInput[$requiredParam])) {
+                if (++$count > 1) {
+                    break;
+                }
+            }
+        }
+
+        if ($count !== 1) {
+            throw new WebPurifyException(
+                'Exactly one of the parameters '
+                . implode(', ', $parameters)
+                . ' required for API request'
+            );
+        }
+    }
+
+    /**
      * Send to log
      *
      * Pass information through to monolog

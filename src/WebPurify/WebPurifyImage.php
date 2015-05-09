@@ -56,7 +56,7 @@ class WebPurifyImage extends WebPurify
             $params = array('imgid' => $params);
         }
 
-        WebPurify::requireParams($params, array('imgid'));
+        WebPurify::requireExactlyOneParamFrom($params, array('imgid', 'customimgid'));
 
         $response = $this->request('imgstatus', $params, static::END_POINT_DOMAIN_IMAGES);
 
