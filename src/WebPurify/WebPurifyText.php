@@ -60,7 +60,8 @@ class WebPurifyText extends WebPurify
         static::requireParams($params, array('text'));
 
         $response = $this->request('checkcount', $params);
-        return (boolean) $response->found;
+
+        return (int) $response->found;
     }
 
     /**

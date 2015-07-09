@@ -90,7 +90,7 @@ class WebPurifyTextTest extends WebPurifyTest
     public function testCheckCountTwo()
     {
         $profanities = $this->webPurify->checkCount('the quick brown fuck jumps over the lazy pussy');
-        $this->assertEquals(2, $profanities);
+        $this->assertSame(2, $profanities);
     }
 
     public function testReplace()
