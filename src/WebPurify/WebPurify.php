@@ -7,7 +7,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * @package CriticalMassUK/webpurify
+ * @package agencyrepublic/webpurify
  */
 abstract class WebPurify implements LoggerAwareInterface
 {
@@ -29,7 +29,7 @@ abstract class WebPurify implements LoggerAwareInterface
     protected $httpInfo;
 
     /* User agent */
-    protected $userAgent = 'CriticalMassUK/WebPurify';
+    protected $userAgent = 'agencyrepublic/webpurify';
     /* Set timeout default. */
     protected $timeout = 30;
     /* Set connect timeout. */

@@ -13,7 +13,7 @@ Add the following to your `composer.json`.
 ```
 {
 	"require": {
-		"CriticalMassUK/webpurify": "dev-master"
+		"agencyrepublic/webpurify": "dev-master"
 	}
 }
 ```
