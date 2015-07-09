@@ -70,8 +70,8 @@ abstract class WebPurifyTest extends PHPUnit_Framework_TestCase
     }
 
     public function testUserAgent() {
-        $this->webPurify->setUserAgent('New user agent');
-        $this->assertEquals('New user agent', $this->webPurify->getUserAgent());
+        $this->webPurify->setUserAgent('User agent');
+        $this->assertEquals('User agent', $this->webPurify->getUserAgent());
     }
 
     public function testSandbox() {
@@ -80,5 +80,19 @@ abstract class WebPurifyTest extends PHPUnit_Framework_TestCase
 
         $this->webPurify->setSandbox(true);
         $this->assertTrue($this->webPurify->getSandbox());
+    }
+
+    public function testEndPointDomain() {
+        $this->webPurify->setEndPointDomain('api1.webpurify.com');
+        $this->assertEquals(
+            'api1.webpurify.com', 
+            $this->webPurify->getEndPointDomain()
+        );
+
+        $this->webPurify->setEndPointDomain('api1-eu.webpurify.com');
+        $this->assertEquals(
+            'api1-eu.webpurify.com',
+            $this->webPurify->getEndPointDomain()
+        );
     }
 }

@@ -13,8 +13,8 @@ EOT
 }
 
 foreach (array('WEB_PURIFY_API_KEY') as $constant) {
-    if (array_key_exists($constant, $_ENV)) {
-        define($constant, $_ENV[$constant]);
+    if (getenv($constant) !== false) {
+        define($constant, getenv($constant));
     }
 }
 
