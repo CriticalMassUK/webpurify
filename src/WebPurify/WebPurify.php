@@ -48,6 +48,9 @@ abstract class WebPurify implements LoggerAwareInterface
     {
         // Set the API key
         $this->setApiKey($apiKey);
+
+        // Set up an NULL logger
+        $this->logger = new \Psr\Log\NullLogger;
     }
 
     /* accessors and mutators */
@@ -228,13 +231,13 @@ abstract class WebPurify implements LoggerAwareInterface
 
         curl_close($ci);
 
-        $this->log(LogLevel::DEBUG, $url);
+        $this->logger->log(LogLevel::DEBUG, $url);
 
         if ($responseRaw === false) {
             throw new WebPurifyException($curlError, $curlErrno);
         }
 
-        $this->log(LogLevel::DEBUG, $responseRaw);
+        $this->logger->log(LogLevel::DEBUG, $responseRaw);
 
         return $responseRaw;
     }
@@ -334,22 +337,5 @@ abstract class WebPurify implements LoggerAwareInterface
                 . ' required for API request'
             );
         }
-    }
-
-    /**
-     * Send to log
-     *
-     * Pass information through to monolog
-     */
-    protected function log()
-    {
-        if (!$this->logger) {
-            return;
-        }
-
-        return call_user_func_array(
-            array($this->logger, 'log'),
-            func_get_args()
-        );
     }
 }
