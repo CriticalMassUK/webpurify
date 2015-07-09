@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rsp stat="ok"> 
+    <method>webpurify.live.imgstatus</method>
+    <format>rest</format>
+    <imgid>7de93bc200ff21a26da6ddb115506e82</imgid>
+    <sdate>2010-11-26 00:02:39</sdate>
+    <mdate>2010-11-26 00:03:01</mdate>
+    <status></status>
+    <api_key>0123456789ABCDEF0123456789ABCDEF</api_key>
+</rsp>

@@ -60,8 +60,13 @@ class WebPurifyImage extends WebPurify
 
         $response = $this->request('imgstatus', $params, static::END_POINT_DOMAIN_IMAGES);
 
-        switch ($response->status)
-        {
+        $status = null;
+
+        if (is_string($response->status)) {
+            $status = $response->status;
+        }
+
+        switch ($status) {
             case 'pending':
                 return null;
 
@@ -72,7 +77,7 @@ class WebPurifyImage extends WebPurify
                 return false;
 
             default:
-                throw new WebPurifyException('Unknown image status response: ' . $response->status);
+                throw new WebPurifyException('Unknown image status response: ' . $status);
         }
     }
 

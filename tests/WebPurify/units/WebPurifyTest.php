@@ -47,4 +47,38 @@ abstract class WebPurifyTest extends PHPUnit_Framework_TestCase
             $this->getName()
         ));
     }
+
+    public function testApiKey() {
+        $this->webPurify->setApiKey('asdfghjkl');
+        $this->assertEquals('asdfghjkl', $this->webPurify->getApiKey());
+    }
+
+    public function testUseSSL() {
+        $this->webPurify->setUseSSL(false);
+        $this->assertFalse($this->webPurify->getUseSSL());
+
+        $this->webPurify->setUseSSL(true);
+        $this->assertTrue($this->webPurify->getUseSSL());
+    }
+
+    public function testSSLVerifyPeer() {
+        $this->webPurify->setSSLVerifyPeer(false);
+        $this->assertFalse($this->webPurify->getSSLVerifyPeer());
+
+        $this->webPurify->setSSLVerifyPeer(true);
+        $this->assertTrue($this->webPurify->getSSLVerifyPeer());
+    }
+
+    public function testUserAgent() {
+        $this->webPurify->setUserAgent('New user agent');
+        $this->assertEquals('New user agent', $this->webPurify->getUserAgent());
+    }
+
+    public function testSandbox() {
+        $this->webPurify->setSandbox(false);
+        $this->assertFalse($this->webPurify->getSandbox());
+
+        $this->webPurify->setSandbox(true);
+        $this->assertTrue($this->webPurify->getSandbox());
+    }
 }

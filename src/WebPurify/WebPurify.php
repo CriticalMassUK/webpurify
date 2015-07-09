@@ -23,13 +23,13 @@ abstract class WebPurify implements LoggerAwareInterface
 
     /* last http request url */
     protected $url;
-    /* last http  response code */
+    /* last http response code */
     protected $httpCode;
-    /* last http  response information */
+    /* last http response information */
     protected $httpInfo;
 
     /* User agent */
-    protected $userAgent = 'WebPurify';
+    protected $userAgent = 'CriticalMassUK/WebPurify';
     /* Set timeout default. */
     protected $timeout = 30;
     /* Set connect timeout. */
@@ -67,7 +67,7 @@ abstract class WebPurify implements LoggerAwareInterface
      */
     public function setApiKey($apiKey)
     {
-        $this->apiKey = $apiKey;
+        $this->apiKey = (string) $apiKey;
     }
 
     /**
@@ -85,7 +85,43 @@ abstract class WebPurify implements LoggerAwareInterface
      */
     public function setUseSSL($useSSL)
     {
-        $this->useSSL = $useSSL;
+        $this->useSSL = (boolean) $useSSL;
+    }
+
+    /**
+     * Get the sslVerifyPeer property
+     */
+    public function getSSLVerifyPeer()
+    {
+        return $this->sslVerifyPeer;
+    }
+
+    /**
+     * Set the SSL configuration property
+     *
+     * @param boolean $sslVerifyPeer Whether to verify SSL peer for requests
+     */
+    public function setSSLVerifyPeer($sslVerifyPeer)
+    {
+        $this->sslVerifyPeer = (boolean) $sslVerifyPeer;
+    }
+
+    /**
+     * Get the user agent
+     */
+    public function getUserAgent()
+    {
+        return $this->userAgent;
+    }
+
+    /**
+     * Set the user agent
+     *
+     * @param string $userAgent The new user agent to use
+     */
+    public function setUserAgent($userAgent)
+    {
+        $this->userAgent = (string) $userAgent;
     }
 
     /* endpoints */
@@ -97,17 +133,40 @@ abstract class WebPurify implements LoggerAwareInterface
 
     public function setEndPointDomain($endPointDomain)
     {
-        $this->endPointDomain = $endPointDomain;
+        $this->endPointDomain = (string) $endPointDomain;
     }
 
-    /* sandbox */
+    /**
+     * Get the last HTTP response code
+     * @return int
+     * @see http://php.net/manual/en/function.curl-getinfo.php#100556
+     */
+    public function getHTTPCode() {
+        return $this->httpCode;
+    }
 
+    /**
+     * Get all the HTTP information for the last request
+     * @return array
+     */
+    public function getHTTPInfo() {
+        return $this->httpInfo;
+    }
+
+    /**
+     * Turn sandbox on/off
+     *
+     * @param boolean $sandbox Whether or not to turn on the sandbox
+     */
     public function setSandbox($sandbox)
     {
-        $this->sandbox = $sandbox;
+        $this->sandbox = (boolean) $sandbox;
     }
 
-    public function getSandbox($sandbox)
+    /**
+     * Get the sandbox status
+     */
+    public function getSandbox()
     {
         return $this->sandbox;
     }

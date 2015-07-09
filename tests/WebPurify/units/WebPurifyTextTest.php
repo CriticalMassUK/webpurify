@@ -12,7 +12,7 @@ class WebPurifyTextTest extends WebPurifyTest
         $expected = array();
 
         $whiteList = $this->webPurify->getBlackList();
-        $this->assertEquals(sort($expected), sort($whiteList));
+        $this->assertSame(sort($expected), sort($whiteList));
     }
 
     public function testGetBlackListOne()
@@ -20,7 +20,7 @@ class WebPurifyTextTest extends WebPurifyTest
         $expected = array('cockburn');
 
         $blackList = $this->webPurify->getBlackList();
-        $this->assertEquals(sort($expected), sort($blackList));
+        $this->assertSame(sort($expected), sort($blackList));
     }
 
     public function testGetBlackListTwo()
@@ -28,7 +28,7 @@ class WebPurifyTextTest extends WebPurifyTest
         $expected = array('cockburn', 'scunthorpe', 'swang');
 
         $blackList = $this->webPurify->getBlackList();
-        $this->assertEquals(sort($expected), sort($blackList));
+        $this->assertSame(sort($expected), sort($blackList));
     }
 
     public function testGetWhiteListNone()
@@ -36,7 +36,7 @@ class WebPurifyTextTest extends WebPurifyTest
         $expected = array();
 
         $whiteList = $this->webPurify->getWhiteList();
-        $this->assertEquals(sort($expected), sort($whiteList));
+        $this->assertSame(sort($expected), sort($whiteList));
     }
 
     public function testGetWhiteListOne()
@@ -44,7 +44,7 @@ class WebPurifyTextTest extends WebPurifyTest
         $expected = array('cockburn');
 
         $whiteList = $this->webPurify->getWhiteList();
-        $this->assertEquals(sort($expected), sort($whiteList));
+        $this->assertSame(sort($expected), sort($whiteList));
     }
 
     public function testGetWhiteListTwo()
@@ -52,7 +52,7 @@ class WebPurifyTextTest extends WebPurifyTest
         $expected = array('cockburn', 'scunthorpe');
 
         $whiteList = $this->webPurify->getWhiteList();
-        $this->assertEquals(sort($expected), sort($whiteList));
+        $this->assertSame(sort($expected), sort($whiteList));
     }
 
     /**
@@ -78,13 +78,13 @@ class WebPurifyTextTest extends WebPurifyTest
     public function testCheckCountNone()
     {
         $profanities = $this->webPurify->checkCount('the quick brown fox jumps over the lazy dog');
-        $this->assertEquals(0, $profanities);
+        $this->assertSame(0, $profanities);
     }
 
     public function testCheckCountOne()
     {
         $profanities = $this->webPurify->checkCount('the quick brown fuck jumps over the lazy dog');
-        $this->assertEquals(1, $profanities);
+        $this->assertSame(1, $profanities);
     }
 
     public function testCheckCountTwo()
@@ -96,7 +96,7 @@ class WebPurifyTextTest extends WebPurifyTest
     public function testReplace()
     {
         $replaced = $this->webPurify->replace('the quick brown fuck jumps over the lazy dog');
-        $this->assertEquals('the quick brown **** jumps over the lazy dog', $replaced);
+        $this->assertSame('the quick brown **** jumps over the lazy dog', $replaced);
     }
 
     public function testReturnExpletivesNone()
