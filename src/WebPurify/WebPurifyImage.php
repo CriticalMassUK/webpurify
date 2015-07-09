@@ -4,7 +4,7 @@ namespace WebPurify;
 
 /**
  * Sends images and retrieves status for human verification
- * @package agencyrepublic/webpurify
+ * @package CriticalMassUK/webpurify
  */
 
 class WebPurifyImage extends WebPurify

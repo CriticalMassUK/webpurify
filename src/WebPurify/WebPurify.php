@@ -7,7 +7,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * @package agencyrepublic/webpurify
+ * @package CriticalMassUK/webpurify
  */
 abstract class WebPurify implements LoggerAwareInterface
 {

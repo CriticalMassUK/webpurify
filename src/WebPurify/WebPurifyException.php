@@ -10,7 +10,7 @@ use Exception;
 
 /**
  * WebPurify will throw this exception if it encouters an error
- * @package agencyrepublic/webpurify
+ * @package CriticalMassUK/webpurify
  */
 
 class WebPurifyException extends Exception

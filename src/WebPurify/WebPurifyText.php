@@ -4,7 +4,7 @@ namespace WebPurify;
 
 /**
  * Instantly verifies if text contains any expletives
- * @package agencyrepublic/webpurify
+ * @package CriticalMassUK/webpurify
  */
 
 class WebPurifyText extends WebPurify

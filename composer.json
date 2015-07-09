@@ -1,17 +1,21 @@
 {
-    "name": "agencyrepublic/webpurify",
-    "description": "A library for using web purify",
-    "homepage": "http://github.com/agencyrepublic/webpurify/",
+    "name": "CriticalMassUK/webpurify",
+    "description": "A third-party PHP library for implementing web purify",
+    "homepage": "http://github.com/CriticalMassUK/webpurify/",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Agency Republic",
-            "homepage": "http://agencyrepublic.com"
+            "name": "Critical Mass",
+            "homepage": "http://www.criticalmass.com/"
+        },
+        {
+            "name": "Bashkim Isai",
+            "homepage": "http://www.bashkim.com/"
         },
         {
             "name": "Contributors",
-            "homepage": "https://github.com/agencyrepublic/webpurify/graphs/contributors"
+            "homepage": "https://github.com/CriticalMassUK/webpurify/graphs/contributors"
         }
     ],
     "require-dev": {
