@@ -38,7 +38,7 @@ class WebPurifyImage extends WebPurify
 
         WebPurify::requireParams($params, array('imgurl'));
 
-        $response = $this->request('imgcheck', $params, static::END_POINT_DOMAIN_IMAGES);
+        $response = $this->request('imgcheck', $params);
         return (string) $response->imgid;
     }
 
@@ -58,7 +58,7 @@ class WebPurifyImage extends WebPurify
 
         WebPurify::requireExactlyOneParamFrom($params, array('imgid', 'customimgid'));
 
-        $response = $this->request('imgstatus', $params, static::END_POINT_DOMAIN_IMAGES);
+        $response = $this->request('imgstatus', $params);
 
         $status = null;
 
@@ -89,7 +89,7 @@ class WebPurifyImage extends WebPurify
      */
     public function imgAccount($params = array())
     {
-        $response = $this->request('imgaccount', $params, static::END_POINT_DOMAIN_IMAGES);
+        $response = $this->request('imgaccount', $params);
         return (int) $response->remaining;
     }
 }
